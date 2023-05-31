@@ -8,22 +8,22 @@
  * Return: If parent is NULL or an error occurs - NULL.
  *         else - a pointer to the new node.
  */
-binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value){
-    if(parent == NULL){
-        return(NULL);
-    }
+binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
+{
+	if (parent == NULL)
+		return (NULL);
     binary_tree_t *new_leftnode;
-    new_leftnode = malloc(sizeof(binary_tree_t));
-    if(new_leftnode == NULL){
-        return(NULL);
-    }
-    if(parent->left != NULL){
-        binary_tree_t *old;
-        old = parent->left;
-        new_leftnode->left = old;
-    }
-    parent->left = new_leftnode;
-    new_leftnode->n = value;
-    new_leftnode->right = NULL;
-    return(new_leftnode);
+	new_leftnode = binary_tree_node(parent, value);
+	if (new_leftnode == NULL)
+		return (NULL);
+
+	if (parent->left != NULL)
+	{
+		binary_tree_t *old = parent->left;
+		new_leftnode->left = old;
+		parent->left->parent = new_leftnode;
+	}
+	parent->left = new_leftnode;
+
+	return (new_leftnode);
 }
