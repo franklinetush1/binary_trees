@@ -8,8 +8,7 @@ size_t binary_tree_size(const binary_tree_t *tree);
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int full;
-	
+	int full;	
 	size_t left_s, right_s;
 	
 	if (tree == NULL)
@@ -18,7 +17,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	left_s = binary_tree_size(tree->left);
 	rite_s = binary_tree_size(tree->right);
 	full = binary_tree_is_full(tree);
-	if (left_s == right_s && is_full)
+	if (left_s == right_s && full)
 		return (1);
 	else
 		return (0);
@@ -49,4 +48,21 @@ int binary_tree_is_full(const binary_tree_t *tree)
 		x = 0;
 
 	return (x);
+}
+
+/**
+ * binary_tree_size - find size of a binary tree
+ * @tree: a pointer to the root node of the tree to find size
+ * Return: the size, 0 if tree is NULL
+ */
+size_t binary_tree_size(const binary_tree_t *tree)
+{
+	size_t size_left, size_right;
+
+	if (tree == NULL)
+		return (0);
+
+	size_left = binary_tree_size(tree->left);
+	size_right= binary_tree_size(tree->right);
+	return (1 + size_left + size_right);
 }
