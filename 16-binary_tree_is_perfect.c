@@ -8,9 +8,10 @@ size_t binary_tree_size(const binary_tree_t *tree);
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	size_t left_s, right_s;
 	int full;
-
+	
+	size_t left_s, right_s;
+	
 	if (tree == NULL)
 		return (0);
 
